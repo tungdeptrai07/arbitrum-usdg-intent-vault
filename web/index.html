@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OrbitUSDG — Arbitrum Stylus &amp; Robinhood Chain USDG Intent Vault</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <h1>OrbitUSDG Intent Router</h1>
+        <p class="subtitle">Arbitrum Open House · Solidity + Stylus (Rust) Cross-Chain Paxos USDG Vault (`42161` ↔ `4663`)</p>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill ok">Solidity `USDGIntentVault.sol` + Stylus `lib.rs`</span>
+      <span id="volPill" class="pill">Volume: $0.00 USDG</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="grid-two">
+      <article class="card">
+        <h2>1. Create Cross-Chain Paxos USDG Intent (`createUsdgIntent`)</h2>
+        <div class="form-stack">
+          <div class="row-two">
+            <label>
+              Source Chain
+              <select id="srcInput">
+                <option value="42161" selected>Arbitrum One (42161)</option>
+                <option value="421614">Arbitrum Sepolia (421614)</option>
+                <option value="4663">Robinhood Chain (4663)</option>
+              </select>
+            </label>
+            <label>
+              Destination Chain
+              <select id="dstInput">
+                <option value="4663" selected>Robinhood Chain (4663)</option>
+                <option value="42161">Arbitrum One (42161)</option>
+                <option value="421614">Arbitrum Sepolia (421614)</option>
+              </select>
+            </label>
+          </div>
+          <div class="row-two">
+            <label>
+              Amount In (`USDG` Stablecoin)
+              <input id="amountInput" type="number" min="10" max="100000" value="1500" />
+            </label>
+            <label>
+              Solver Fee (`bps`, max 25 bps)
+              <input id="feeInput" type="number" min="1" max="25" value="10" />
+            </label>
+          </div>
+          <button id="createBtn" type="button" class="btn primary">Create USDG Intent &amp; Quote via Stylus</button>
+          <div id="msgBox" class="msg-box" hidden></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>2. Liquidity Reserves &amp; Contract Verification</h2>
+        <div id="reservesBox" class="item-box"></div>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>3. Active &amp; Settled Cross-Chain USDG Intents (`settleIntentWithStylusQuote`)</h2>
+      <div id="intentsList" class="stack">
+        <div class="item-box muted">Create an intent above to compute its Arbitrum Stylus quote and settle across chains.</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
